@@ -10,7 +10,6 @@ import seaborn as sns
 '''
 데이터 시각화
 앤티티(개체)를 차트로 표현하는 것 
-
 모든 feature 를 다 그려야 하지만, 시간 관계상 
 survived, pclass, sex, embarked 의 4개만 그리겠습니다. 
 템플릿 메소드 패턴으로 구성하시오 
