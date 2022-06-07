@@ -26,7 +26,7 @@ class Similarity:
             plt.title("vector {}".format(i + 1))
         plt.tight_layout()
         plt.show()
-        
+
 if __name__ == '__main__':
     digits = load_digits()
     d1 = digits.images[0]
