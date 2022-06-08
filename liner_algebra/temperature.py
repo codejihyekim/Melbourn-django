@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from liner_algebra.study import Study
 
+
 class Temperature:
 
     def __init__(self):
