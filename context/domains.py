@@ -1,8 +1,13 @@
 # context, fname, train, test, id, label
 from dataclasses import dataclass
 from abc import *
+from typing import TypeVar
+
 import pandas as pd
 import googlemaps
+PandasDataFrame = TypeVar('pandas.core.frame.DataFrame')
+GooglemapsClient = TypeVar('googlemaps.Client')
+
 
 @dataclass
 class Dataset:
@@ -112,18 +117,17 @@ class Reader(ReaderBase):
     def new_file(self, file) -> str:
         return file.context + file.fname
 
-    def csv(self, file) -> object:
+    def csv(self, file: str) -> PandasDataFrame:
         return pd.read_csv(f'{self.new_file(file)}.csv', encoding='UTF-8', thousands=',')
 
-    def xls(self, file, header, cols) -> object:
-        return pd.read_excel(f'{self.new_file(file)}.xls', header=header, usecols=cols)
+    def xls(self, file: str, header: str, cols: str, skiprows) -> PandasDataFrame:
+        return pd.read_excel(f'{self.new_file(file)}.xls', header=header, usecols=cols, skiprows=skiprows)
 
-    def json(self, file) -> object:
+    def json(self, file: str) -> PandasDataFrame:
         return pd.read_json(f'{self.new_file(file)}.json', encoding='UTF-8')
 
-    def gmaps(self):
+    def gmaps(self) -> GooglemapsClient:
         return googlemaps.Client(key='')
-
 
     @staticmethod
     def dframe(this):
