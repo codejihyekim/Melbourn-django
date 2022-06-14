@@ -1,4 +1,5 @@
 # context, fname, train, test, id, label
+import json
 from dataclasses import dataclass
 from abc import *
 from typing import TypeVar
@@ -125,6 +126,9 @@ class Reader(ReaderBase):
 
     def json(self, file: str) -> PandasDataFrame:
         return pd.read_json(f'{self.new_file(file)}.json', encoding='UTF-8')
+
+    def map_json(self, path: str) -> object:
+        return json.load(open(f'{self.new_file(path)}.json', encoding='UTF-8'))
 
     def gmaps(self) -> GooglemapsClient:
         return googlemaps.Client(key='')
