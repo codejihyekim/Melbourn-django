@@ -42,7 +42,7 @@ class Solution:
                 break
 
     def crawling(self):
-        driver = webdriver.Chrome('C:/Users/bitcamp/Downloads/chromedriver_win32/chromedriver.exe')
+        driver = webdriver.Chrome('./data/chromedriver.exe')
         driver.get('https://www.opinet.co.kr/searRgSelect.do')
         driver.get("http://www.opinet.co.kr/searRgSelect.do")
         driver.find_element_by_id("SIDO_NM0").send_keys('서울특별시')
@@ -65,7 +65,7 @@ class Solution:
         driver.close()
 
     def file_download(self):
-        merged_list = glob('C:/Users/bitcamp/Desktop/data/지역*xls') # 생성한 엑셀파일 한 리스트에 모으기
+        merged_list = glob('./data/지역*xls') # 생성한 엑셀파일 한 리스트에 모으기
         #print(merged_list)
         list_tabel = []  # 엑셀 내용을 담을 리스트
         for file_name in merged_list:
@@ -73,7 +73,7 @@ class Solution:
             list_tabel.append(tmp) # list_tabel 리스트에 넣기
         #print(list_tabel)  # 25개의 테이블이 저장된 리스트
         total_gas_station = pd.concat(list_tabel)  # 25개의 테이블을 하나의 리스트구조로 반환
-        #print(total_gas_station)
+        print(total_gas_station)
         '''
                        지역                    상호                            주소  ...   휘발유    경유  실내등유
         0   서울특별시  재건에너지 재정제2주유소 고속셀프지점  서울특별시 강동구  천호대로 1246 (둔촌제2동)  ...  2065  2065     -
