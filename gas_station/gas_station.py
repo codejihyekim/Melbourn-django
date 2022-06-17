@@ -29,10 +29,10 @@ class Solution:
                 self.crawling()
                 break
             if menu == '2':
-                self.file_download()
+                self.data_embedding()
                 break
             if menu == '3':
-                self.gas_station()
+                self.preprocessing()
                 break
             if menu == '4':
                 self.visualization()
@@ -64,7 +64,7 @@ class Solution:
             file_down = driver.find_element_by_id('glopopd_excel').click() # 25개의 피일을 순차적으로 다운로드 
         driver.close()
 
-    def file_download(self):
+    def data_embedding(self):
         merged_list = glob('./data/지역*xls') # 생성한 엑셀파일 한 리스트에 모으기
         #print(merged_list)
         list_tabel = []  # 엑셀 내용을 담을 리스트
@@ -91,8 +91,8 @@ class Solution:
         '''
         return total_gas_station
 
-    def gas_station(self):
-        total_gas_station = self.file_download()
+    def preprocessing(self):
+        total_gas_station = self.data_embedding()
         gas_station = pd.DataFrame({'주유소명': # 스키마 이름 변경
         total_gas_station['상호'],\
         '경유가격': total_gas_station['경유'],\
@@ -185,7 +185,7 @@ class Solution:
 
     def visualization(self):
         self.korean_print() # 폰트 설정
-        gas_station = self.gas_station() #처리한 데이터 가져옴
+        gas_station = self.preprocessing() #처리한 데이터 가져옴
         gas_station.boxplot(column='경유가격', by='셀프') # 셀프 vs 비셀프 가격 비교
         plt.show()
         '''
@@ -202,7 +202,7 @@ class Solution:
         plt.show()
 
     def minmax(self):
-        gas_station = self.gas_station()
+        gas_station = self.preprocessing()
         print(gas_station.sort_values(by='경유가격', ascending=False).head(10)) # 최고가격 10곳
         '''
              index               주유소명    경유가격 셀프    브랜드                        주소
