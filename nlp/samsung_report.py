@@ -74,6 +74,7 @@ class Solution(Reader):
     def download():
         nltk.download('punkt')
 
+
     def preprocessing(self):
         self.okt.pos("삼성전자 글로벌센터 전자사업부", stem=True)
         f1 = self.file
@@ -82,7 +83,9 @@ class Solution(Reader):
         with open(file, 'r', encoding='utf-8') as f:
             texts = f.read()
         texts = texts.replace('\n', ' ') # 반드시 공백을 주어야 띄어쓰기가 가능하다
+        #print(texts)
         tokenizer = re.compile(r'[^ㄱ-힣]+') # 한글이 아닌 것들 제거
+        #print(tokenizer.sub(' ', texts))
         return tokenizer.sub(' ', texts)
 
     def noun_embedding(self):
@@ -129,4 +132,6 @@ class Solution(Reader):
         plt.show()
 
 if __name__ == '__main__':
+    #Solution().preprocessing()
     Solution().hook()
+

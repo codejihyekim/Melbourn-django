@@ -1,15 +1,9 @@
-import numpy as np
-import matplotlib.pyplot as plt
+from tensorflow import keras
 from keras import datasets, layers, models
-from tensorflow import keras # 이미지 처리
-
 
 class Solution:
-
     def __init__(self):
         self.mnist = keras.datasets.mnist
-
-        #preprocessing
         (train_images, train_labels), (test_images, test_labels) = datasets.mnist.load_data()
 
         train_images = train_images.reshape((60000, 28, 28, 1))
@@ -17,9 +11,9 @@ class Solution:
 
         # 픽셀 값을 0~1 사이로 정규화합니다.
         self.train_images, self.test_images = train_images / 255.0, test_images / 255.0
+        self.layers = layers
         self.model = models.Sequential()
         self.train_labels = train_labels
-        self.layers = layers
 
     def solution(self):
         self.modeling()
@@ -43,7 +37,6 @@ class Solution:
         model.compile(optimizer='adam',
                       loss='sparse_categorical_crossentropy',
                       metrics=['accuracy'])
-
         model.fit(self.train_images, self.train_labels, epochs=5)
 
 if __name__ == '__main__':
