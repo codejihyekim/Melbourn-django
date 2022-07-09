@@ -110,5 +110,5 @@ class Solution(Reader):
 if __name__ == '__main__':
     #Solution().s_preprocessing()
     #Solution().noun_embedding()
-    #Solution().h_draw_wordcloud()
+    Solution().h_draw_wordcloud()
     Solution().s_draw_wordcloud()

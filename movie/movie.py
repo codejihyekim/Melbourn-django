@@ -6,8 +6,6 @@ import matplotlib.pyplot as plt
 plt.style.use('seaborn-white')
 
 from konlpy.tag import Mecab
-from tensorflow.keras.preprocessing.text import Tokenizer
-from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 class Solution:
     def __init__(self):
